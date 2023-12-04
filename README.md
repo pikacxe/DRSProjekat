@@ -1,0 +1,1 @@
+# Predmentni projekat radjen na predmetu *Distribuirani računarski sistemi*
