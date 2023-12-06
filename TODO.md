@@ -2,11 +2,11 @@
 
 
 
- - [ ] api/admin/register
+ - [X] api/admin/register
  - [ ] api/admin/transactions
- - [ ] api/admin/verify
- - [ ] api/login
- - [ ] api/profile
+ - [X] api/admin/verify
+ - [X] api/login
+ - [X] api/profile
  - [ ] api/profile/update
  - [ ] api/card/add
  - [ ] api/card/
@@ -17,18 +17,8 @@
 
 ## Entiteti
 
- - Admin
-   - FirstName      :str
-   - LastName       :str
-   - Address        :str
-   - City           :str
-   - Country        :str
-   - PhoneNumber    :str
-   - Email          :str
-   - Password       :str
-
  - User
-   - UID            :int
+   - ID             :str PK
    - FirstName      :str
    - LastName       :str
    - Address        :str
@@ -37,26 +27,31 @@
    - PhoneNumber    :str
    - Email          :str
    - Password       :str
-   - Cards []       :Array
-   - _verified      :bool
-   - _creationDate  :Date
+   - isVerified     :bool
+   - isAdmin        :bool
+
 
  - Card
-   - CardNumber     :str
-   - UserID         :int
-   - Currency       :str
-   - Amount         :double
-   - Currencies     :Array (0x00000000000000000000000010000001?)
+   - CardNumber     :str PK
+   - UserID         :str FK
 
+
+ - AccountBalance
+   - CardNumber     :str PK (CardNumber, Currrency)
+   - Currency       :str 
+   - Balance        :double
 
  - Transaction
-   - UID                    :str
-   - SenderID               :int
-   - SenderCardNumber       :str
-   - Currency               :str (int? api number)
+   - ID                     :str PK
+   - SenderID               :int 
+   - SenderCardNumber       :str 
+   - Currency               :str
    - Amount                 :double
-   - RecipientCardnumber    :str
+   - RecipientCardNumber    :str
    - RecipientEmail         :string
    - RecipientFName         :string
    - RecipientLName         :string
-   - State                  :bool
+   - State                  :string
+   - Created                :dateTime
+   - Completed              :dateTime
+   - isCompleted            :boolean
