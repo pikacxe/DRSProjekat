@@ -3,16 +3,22 @@
 
 
  - [X] api/admin/register
+    - [ ] add password hashing
  - [ ] api/admin/transactions
+    - [ ] send mail on transaction complete
+    - [ ] implement flask-socketio for real-time transaction view
+ - [X] api/admin/users
  - [X] api/admin/verify
+    - [X] send mail on user verify
  - [X] api/login
  - [X] api/profile
  - [ ] api/profile/update
- - [ ] api/card/add
- - [ ] api/card/
- - [ ] api/card/:id
- - [ ] api/card/:id/deposit
+ - [X] api/card/add
+ - [X] api/card/
+ - [X] api/card/:id
+ - [X] api/card/:id/deposit
  - [ ] api/transaction/add
+ 
 
 
 ## Entiteti
