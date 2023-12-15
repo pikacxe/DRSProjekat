@@ -22,7 +22,7 @@ class Transaction(db.Model):
     currency = db.Column(db.String, name='Currency')
     amount = db.Column(db.Float, name='Amount')
     recipient_card_number = db.Column(db.String, name='RecipientCardNumber')
-    recipient_email = db.Column(db.String, name='RecipientEmail')
+    recipient_email = db.Column(db.String, name='RecipientEmail', unique=True)
     recipient_first_name = db.Column(db.String, name='RecipientFName')
     recipient_last_name = db.Column(db.String, name='RecipientLName')
     state = db.Column(db.String, name='State')
