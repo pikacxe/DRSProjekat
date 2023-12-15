@@ -32,8 +32,7 @@ def register(curr_user):
     # send mail to user with login details
     msg = Message(
         "Account was created successfully",
-        sender='drs.projekat.mail@gmail.com',
-        recipients=['ultimatedlord@gmail.com'])
+        recipients=[user.email])
     msg.body = f"Hello, your account was created successfully. Your login details are:\nEmail: {user.email}\nPassword: {user.password}\n"
     mail.send(msg)
     return jsonify({"message": "User created successfully"}), 200
@@ -53,9 +52,8 @@ def verify_user(curr_user):
     # send mail to user with successful verification
     msg = Message(
         "Account was verified successfully",
-        sender='drs.projekat.mail@gmail.com',
-        recipients=['ultimatedlord@gmail.com'])
-    msg.body = f"Hello, your account was verified successfully."
+        recipients=[user_to_verify.email])
+    msg.body = f"Hello, your account was verified successfully. You can now login to your account.\n"
     mail.send(msg)
     
     return jsonify({'message': 'User verified successfully'}), 200 

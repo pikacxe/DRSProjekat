@@ -1,6 +1,5 @@
 from app.extensions import db
 
-
 class Card(db.Model):
     __tablename__ = 'Card'
     card_number = db.Column(db.String, primary_key=True, name='CardNumber')

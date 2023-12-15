@@ -6,7 +6,6 @@ class AccountBalance(db.Model):
     card_number = db.Column(db.String, primary_key=True, name="CardNumber")
     currency = db.Column(db.String,default='RSD', primary_key=True, name="Currency")
     balance = db.Column(db.Float,default=0, name="Balance")
-    
     # to json
     def to_json(self):
         return {

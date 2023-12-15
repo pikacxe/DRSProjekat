@@ -3,21 +3,23 @@
 
 
  - [X] api/admin/register
-    - [ ] add password hashing
- - [ ] api/admin/transactions
-    - [ ] send mail on transaction complete
+ - [ ] add password hashing
+ - [X] api/admin/transactions
     - [ ] implement flask-socketio for real-time transaction view
+ - [ ] complete pending transactions with process
+    - [ ] send mail on transaction complete
  - [X] api/admin/users
  - [X] api/admin/verify
     - [X] send mail on user verify
  - [X] api/login
+ - [X] api/change-password
  - [X] api/profile
- - [ ] api/profile/update
+ - [X] api/profile/update
  - [X] api/card/add
  - [X] api/card/
  - [X] api/card/:id
  - [X] api/card/:id/deposit
- - [ ] api/transaction/add
+ - [X] api/transaction/add
  
 
 
@@ -43,8 +45,8 @@
 
 
  - AccountBalance
-   - CardNumber     :str PK (CardNumber, Currrency)
-   - Currency       :str 
+   - CardNumber     :str PK
+   - Currency       :str PK
    - Balance        :double
 
  - Transaction

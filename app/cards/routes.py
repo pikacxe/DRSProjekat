@@ -11,23 +11,23 @@ from app.extensions import db
 def get_all_cards(curr_user):
     # get all card for user
     user_cards = Card.query.filter_by(user_id=curr_user.id).all()
-    if not user_cards:
-        return jsonify({"message": "No card found"}), 404
+    if not user_cards or not curr_user.is_verified:
+        return jsonify([]), 200
     data = []
     for uc in user_cards:
         # get account balances for each card
         account_balances = AccountBalance.query.filter_by(card_number=uc.card_number).all()
-
+        # get account currencies
+        account_currencies = [x.currency for x in account_balances]
         # create a dictionary for each card and its account balances
         el = {
             "card": uc.to_json(),
-            "account_balances": account_balances
+            "account_balances": [x.to_json() for x in account_balances],
+            "account_currencies": account_currencies,
         }
 
         data.append(el)
-    print(data)
     return jsonify(data), 200
-    #return jsonify({'message': 'Not implemented'}), 500
 
 
 @bp.route("/add", methods=["POST"])
@@ -35,10 +35,14 @@ def get_all_cards(curr_user):
 def add_card(curr_user):
     # add new card
     data = request.get_json()
+    if not data:
+        return jsonify({'message': 'Invalid data'}), 400
     new_card = Card(card_number=data['card_number'], user_id=curr_user.id)
-    # create default acc balance if none specified
+    # create default acc balance for card
     new_balance = AccountBalance(card_number=new_card.card_number)
-    db.session.add(new_card, new_balance)
+    db.session.add(new_card)
+    db.session.commit()
+    db.session.add(new_balance)
     db.session.commit()
 
     return jsonify({'message':'Card added successfully'}), 200
@@ -85,5 +89,6 @@ def deposit(curr_user, card_number):
     else:
         # update existing account balance
         account_balance.amount += amount
+    db.session.merge(account_balance)
     db.session.commit()
     return jsonify({"message":"Account balance updated successfully"}), 200
