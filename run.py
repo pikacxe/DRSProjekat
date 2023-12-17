@@ -25,7 +25,7 @@ if __name__ == "__main__":
         scheduler.start()
 
         # Run app
-        socketio.run(app, host=host, port=port, debug=debug)
+        socketio.run(app, host=host, port=port, debug=debug, allow_unsafe_werkzeug=True)
     except Exception as e:
         if debug:
             print(e)
