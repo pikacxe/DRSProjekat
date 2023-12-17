@@ -80,15 +80,15 @@ def deposit(curr_user, card_number):
     if not data:
         return jsonify({'message': 'Invalid data'}), 400
     currency = data['currency']
-    amount = data['amount']
+    amount = float(data['amount'])
     account_balance = AccountBalance.query.filter_by(card_number=card_number, currency=currency).first()
     if not account_balance:
         # create new account balance
-        account_balance = AccountBalance(card_number=card_number, currency=currency, amount=amount)
+        account_balance = AccountBalance(card_number=card_number, currency=currency, balance=amount)
         db.session.add(account_balance)     
     else:
         # update existing account balance
-        account_balance.amount += amount
+        account_balance.balance += amount
     db.session.merge(account_balance)
     db.session.commit()
     return jsonify({"message":"Account balance updated successfully"}), 200

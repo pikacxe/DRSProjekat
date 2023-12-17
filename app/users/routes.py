@@ -3,7 +3,7 @@ from os import environ as env
 import jwt
 from flask import jsonify, request
 from app.users import bp
-from app.models.user import User, UserForm
+from app.models.user import User
 from app.helpers import token_required
 from app.extensions import db
 
@@ -57,13 +57,15 @@ def change_password(curr_user):
 def update_user(curr_user):
     # update user data
     json_data = request.get_json()
-    data = UserForm(formdata=None, **json_data, meta={"csrf": False})
-    if not data or not data.validate():
+    if not json_data:
         return jsonify({"message": "Invalid data"}), 400
-    # update curr_user with data using constructor
-    curr_user = User(data, curr_user.id)
+    try:
+        updated = User(json_data,curr_user.id)
+    except Exception as e:
+        print(e)
+        return jsonify({"message": "Invalid data"}), 400
     # update user in db
-    db.session.merge(curr_user)
+    db.session.merge(updated)
     db.session.commit()
     return jsonify({"message": "User updated successfully"}), 200
 

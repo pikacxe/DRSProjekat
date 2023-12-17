@@ -24,7 +24,9 @@ def get_all_unverified_users(curr_user):
 def register(curr_user):
     if not curr_user.is_admin:
         return jsonify({"message": "You are not an admin"}), 401
-    data = request.form
+    data = request.get_json()
+    if not data:
+        return jsonify({'message': 'Invalid data'}), 400
     # add new user to db
     user = User(id=str(uuid.uuid4()), email=data["email"], password=data["password"])
     db.session.add(user)

@@ -5,9 +5,9 @@
  - [X] api/admin/register
  - [ ] add password hashing
  - [X] api/admin/transactions
-    - [ ] implement flask-socketio for real-time transaction view
- - [ ] complete pending transactions with process
-    - [ ] send mail on transaction complete
+    - [X] implement flask-socketio for real-time transaction view
+ - [X] complete pending transactions with process
+    - [X] send mail on transaction complete
  - [X] api/admin/users
  - [X] api/admin/verify
     - [X] send mail on user verify

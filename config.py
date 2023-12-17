@@ -14,3 +14,4 @@ class Config:
     MAIL_PASSWORD = "1d09d3d2c356f4"
     MAIL_USE_TLS = True
     MAIL_DEFAULT_SENDER = "drs.projekat.mail@gmail.com"
+    TRANSACTION_PERIOD = 5
