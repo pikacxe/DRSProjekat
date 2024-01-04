@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Convert your balance to another currency</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <span>{{data.balance}}</span>
+        <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <mat-select [(ngModel)]="selectedValue" (selectionChange)="calculateBalance()">
+                <mat-option *ngFor="let currency of currencies" [value]="currency.currency">
+                    {{currency.currency}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</div>

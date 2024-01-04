@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>New Transaction</h1>
+<div mat-dialog-content>
+  <form [formGroup]="newTransactionForm">
+    <mat-form-field>
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="selectedValue" formControlName="Currency">
+          <!-- exchange umesto value !!! -->
+            <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+                {{currency.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input type="text" matInput formControlName="Amount">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Recipient's card number</mat-label>
+        <input type="text" matInput formControlName="RecipientCardNumber">
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Recipent's email</mat-label>
+      <input type="email" matInput formControlName="RecipientEmail" placeholder="pat@example.com">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Recipient's first name</mat-label>
+        <input type="text" matInput formControlName="RecipientFName">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Recipient's last name</mat-label>
+        <input type="text" matInput formControlName="RecipientLName">
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="createTransaction()" [disabled]="newTransactionForm.invalid">Send</button>
+</div>

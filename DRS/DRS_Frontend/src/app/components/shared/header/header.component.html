@@ -1,0 +1,11 @@
+<div class="header">
+    <div class="left" (click)="goToHomePage()">
+        <mat-icon color="accent">credit_card</mat-icon>
+        <p>TRANSACTION APP</p>
+    </div>
+    <button mat-raised-button [matMenuTriggerFor]="menu" color="accent"> <mat-icon>account_circle</mat-icon> Profile </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="goToProfileEdit()"> <mat-icon>edit</mat-icon> Edit profile</button>
+        <button mat-menu-item (click)="logOut()"> <mat-icon>logout</mat-icon> LogOut</button>
+    </mat-menu>
+</div>
