@@ -33,4 +33,15 @@ export class CardService {
     
     return this.http.post<any>(URL+'add', data, httpOptions);
   }
+
+  addFunds(data: any, cardNumber:string, token:string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    }
+    
+    return this.http.post<any>(URL + cardNumber + '/deposit', data, httpOptions);
+  }
 }

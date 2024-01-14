@@ -20,6 +20,7 @@ export class MainPageAdminComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    this.loadingService.setLoadingState(true);
     this.socketService.listen('transaction_processing')
     .subscribe({
       next: (res) => {
@@ -28,6 +29,7 @@ export class MainPageAdminComponent implements OnInit{
           recipient_name: response.recipient_first_name + ' ' + response.recipient_last_name,
         }));
         this.transactionsDataSource = new MatTableDataSource(data);
+        this.loadingService.setLoadingState(false);
       }
     })
   }

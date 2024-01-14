@@ -3,37 +3,36 @@
   <form [formGroup]="newTransactionForm">
     <mat-form-field>
         <mat-label>Currency</mat-label>
-        <mat-select [(ngModel)]="selectedValue" formControlName="Currency">
-          <!-- exchange umesto value !!! -->
-            <mat-option *ngFor="let currency of currencies" [value]="currency.value">
-                {{currency.viewValue}}
+        <mat-select [(ngModel)]="selectedValue" formControlName="currency">
+            <mat-option *ngFor="let currency of data.SenderCurrencies" [value]="currency.currency">
+                {{currency.currency}}
             </mat-option>
         </mat-select>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Amount</mat-label>
-        <input type="text" matInput formControlName="Amount">
+        <input type="text" matInput formControlName="amount">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Recipient's card number</mat-label>
-        <input type="text" matInput formControlName="RecipientCardNumber">
+        <input type="text" matInput formControlName="recipient_card_number">
     </mat-form-field>
     
     <mat-form-field>
       <mat-label>Recipent's email</mat-label>
-      <input type="email" matInput formControlName="RecipientEmail" placeholder="pat@example.com">
+      <input type="email" matInput formControlName="recipient_email" placeholder="pat@example.com">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Recipient's first name</mat-label>
-        <input type="text" matInput formControlName="RecipientFName">
+        <input type="text" matInput formControlName="recipient_first_name">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Recipient's last name</mat-label>
-        <input type="text" matInput formControlName="RecipientLName">
+        <input type="text" matInput formControlName="recipient_last_name">
     </mat-form-field>
   </form>
 </div>

@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<div class="user" *ngFor="let user of users">
+    <p>User's ID:  {{user.id}}</p>
+    <p>User's email:  {{user.email}}</p>
+    <p>User's name:  {{user.first_name}} {{user.last_name}}</p>
+
+    <p>*********************</p>
+
+</div>
+
+<app-spinner></app-spinner>

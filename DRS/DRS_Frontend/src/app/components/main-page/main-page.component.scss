@@ -38,8 +38,11 @@
             gap: 20px;
             margin-top: 20px;
 
-            .card:nth-child(1),.card:nth-child(2){
+            .card:nth-child(1){
                 margin-top: 10px;
+            }
+            .card:last-child{
+                margin-bottom: 20px;
             }
             .card {
                 margin-top: 35px;

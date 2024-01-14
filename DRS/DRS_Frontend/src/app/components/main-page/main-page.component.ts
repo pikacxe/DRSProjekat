@@ -57,12 +57,12 @@ export class MainPageComponent implements OnInit {
     this.getAllCards();
   }
 
-  openNewTransactionDialog() {
+  openNewTransactionDialog(cardNumber: string, balances: any[]) {
     this.dialog.open(NewTransactionDialogComponent, {
       panelClass: 'custom-mat-dialog',
       data: {
-        SenderID: 'senderId',
-        SenderCardNumber: 'card number',
+        SenderCardNumber: cardNumber,
+        SenderCurrencies: balances
       },
     });
   }
@@ -77,9 +77,18 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  openAddFundsDialog() {
-    this.dialog.open(AddFundsDialogComponent, {
+  openAddFundsDialog(cardNumber: string) {
+    const dialogRef = this.dialog.open(AddFundsDialogComponent, {
       panelClass: 'custom-mat-dialog',
+      data: {
+        DepositCardNumber: cardNumber
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.getAllCards();
+      }
     });
   }
 

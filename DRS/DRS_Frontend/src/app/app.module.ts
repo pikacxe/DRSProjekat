@@ -19,6 +19,7 @@ import { NewCardDialogComponent } from './components/dialogs/new-card-dialog/new
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ChangePasswordDialogComponent } from './components/dialogs/change-password-dialog/change-password-dialog.component';
 import { ConvertDialogComponent } from './components/dialogs/convert-dialog/convert-dialog.component';
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConvertDialogComponent } from './components/dialogs/convert-dialog/conv
     NewCardDialogComponent,
     EditProfileComponent,
     ChangePasswordDialogComponent,
-    ConvertDialogComponent
+    ConvertDialogComponent,
+    ManageUsersComponent
   ],
   imports: [
     BrowserModule,

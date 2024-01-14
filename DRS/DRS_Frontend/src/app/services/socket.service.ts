@@ -9,7 +9,7 @@ export class SocketService {
   private socket: any;
 
   constructor() { 
-    this.socket = io('192.168.31.159:8080');
+    this.socket = io('http://spasic.co.rs:8080');
   }
 
   listen(eventName: string): Observable<any> {

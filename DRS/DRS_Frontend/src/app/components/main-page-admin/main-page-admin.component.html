@@ -1,6 +1,4 @@
 <app-header></app-header>
-<p>main-page-admin works!</p>
-
 <table mat-table [dataSource]="transactionsDataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -55,4 +53,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<p>To register or verify users click <a routerLink="/manage_users">here</a>.</p>
+
 <app-spinner></app-spinner>

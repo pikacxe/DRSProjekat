@@ -38,11 +38,11 @@
                 <hr class="card-hr">
 
                 <div class="buttons">
-                    <button mat-raised-button color="primary" (click)="openNewTransactionDialog()">
+                    <button mat-raised-button color="primary" (click)="openNewTransactionDialog(card.card.card_number, card.account_balances)">
                         <mat-icon>send</mat-icon> New transaction </button>
                     <button mat-raised-button color="primary" (click)="openConvertDialog(card.account_balances[0].balance)">
                         <mat-icon>send</mat-icon> Convert </button>
-                    <button mat-raised-button color="primary" (click)="openAddFundsDialog()"> <mat-icon>add</mat-icon>
+                    <button mat-raised-button color="primary" (click)="openAddFundsDialog(card.card.card_number)"> <mat-icon>add</mat-icon>
                         Add funds </button>
                 </div>
             </div>
