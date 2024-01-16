@@ -1,0 +1,25 @@
+.mat-mdc-dialog-content {
+    mat-form-field {
+      width: 100%;
+    }
+    
+    margin-top: 10px;
+    overflow: hidden !important;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 50px;
+
+  span {
+    font-size: 20px;
+    padding-bottom: 10px;
+    color: black;
+  }
+
+  mat-form-field {
+    width: 200px;
+  }
+}

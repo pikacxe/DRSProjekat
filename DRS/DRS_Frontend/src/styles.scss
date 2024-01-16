@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@ngneat/hot-toast/src/styles/styles.scss';
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-mat-dialog {
+  width: 100% !important;
+  max-width: 500px !important;
+}
+
+
+.mat-mdc-dialog-title {
+  font-size: 24px !important;
+}
+
+.mat-mdc-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    flex: 1;
+  }
+}

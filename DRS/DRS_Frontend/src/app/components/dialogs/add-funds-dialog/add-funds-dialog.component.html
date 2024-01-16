@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Add Funds</h1>
+<div mat-dialog-content>
+  <form [formGroup]="addFundsForm">
+    <mat-form-field>
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="selectedValue" formControlName="currency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency.currency">
+                {{currency.currency}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input type="text" matInput formControlName="amount">
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="addFunds()" [disabled]="addFundsForm.invalid">Deposit</button>
+</div>

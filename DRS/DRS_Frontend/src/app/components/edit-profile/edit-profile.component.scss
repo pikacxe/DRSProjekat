@@ -1,0 +1,54 @@
+@import "../../../assets/scss/variables.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(228, 226, 226);
+  height: 100%;
+
+  .page {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 40px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .profileForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 350px;
+      padding-bottom: 20px;
+
+      mat-form-field,
+      button {
+        width: 100%;
+        max-width: 350px;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+
+      .changePassword {
+        font-size: 23px;
+        font-weight: bold;
+        align-self: flex-start;
+
+        .link {
+          text-decoration: underline;
+          color: $main-color;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
