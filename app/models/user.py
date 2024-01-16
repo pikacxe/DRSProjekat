@@ -34,7 +34,6 @@ class User(db.Model):
         self.phone_number = json["phone_number"]
         self.email = json["email"]
 
-
     # verify json
     @staticmethod
     def verify_json(json):
@@ -47,7 +46,14 @@ class User(db.Model):
             or "phone_number" not in json
             or "email" not in json
         ):
+            # TODO add better validation
             return False
+        return True
+
+    # verify password
+    @staticmethod
+    def verify_password(password):
+        # TODO add better validation
         return True
 
     # to json

@@ -3,9 +3,8 @@ from os import environ as env
 import jwt
 from flask import jsonify, request
 from app.users import bp
-from app.models.user import User
+from app.repos.user_repo import UserRepo as ur
 from app.helpers import token_required
-from app.extensions import db
 
 
 @bp.route("/login", methods=["POST"])
@@ -13,7 +12,7 @@ def login():
     email = request.form.get("email")
     password = request.form.get("password")
     # get user_id
-    user = User.query.filter_by(email=email, password=password).first()
+    user = ur.get_user_by_logon(email, password)
     if not user:
         return jsonify({"message": "User not found"}), 404
     # generate token
@@ -42,13 +41,8 @@ def change_password(curr_user):
     data = request.get_json()
     if not data:
         return jsonify({"message": "Invalid data"}), 400
-    # check if old password matches
-    if curr_user.password != data["old_password"]:
-        return jsonify({"message": "Old password does not match user password"}), 401
-    # update password
-    curr_user.password = data["new_password"]
-    db.session.merge(curr_user)
-    db.session.commit()
+    if not ur.change_password(curr_user.id, data["old_password"], data["new_password"]):
+        return jsonify({"message": "Password change failed"}), 400
     return jsonify({"message": "Password changed successfully"}), 200
 
 
@@ -59,13 +53,7 @@ def update_user(curr_user):
     json_data = request.get_json()
     if not json_data:
         return jsonify({"message": "Invalid data"}), 400
-    try:
-        updated = User(json_data,curr_user.id)
-    except Exception as e:
-        print(e)
-        return jsonify({"message": "Invalid data"}), 400
-    # update user in db
-    db.session.merge(updated)
-    db.session.commit()
+    if not ur.update_user(curr_user.id, json_data):
+        return jsonify({"message": "User was not updated"}), 400
     return jsonify({"message": "User updated successfully"}), 200
 

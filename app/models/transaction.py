@@ -18,7 +18,7 @@ class Transaction(db.Model):
     state = db.Column(db.String, name='State', default='Pending')
     created = db.Column(db.DateTime, default=datetime.utcnow(), name='Created')
     completed = db.Column(db.DateTime, name='Completed')
-    is_completed = db.Column(db.Boolean, name='isCompleted')
+    is_completed = db.Column(db.Boolean, name='isCompleted', default=False)
 
     # create transaction from json
     def __init__(self, json, sender_id):
@@ -33,8 +33,6 @@ class Transaction(db.Model):
         self.recipient_email = json['recipient_email']
         self.recipient_first_name = json['recipient_first_name']
         self.recipient_last_name = json['recipient_last_name']
-        self.state = 'Pending'
-        self.is_completed = False
 
     # to json
     def to_json(self):

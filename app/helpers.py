@@ -1,4 +1,4 @@
-from app.models.user import User
+from app.repos.user_repo import UserRepo as ur
 from flask import request, jsonify
 from functools import wraps
 import jwt
@@ -24,7 +24,7 @@ def token_required(f):
 
             # Fetch the user from your database using the user_id
             # Replace 'User' and 'query' with your actual User model and query method
-            current_user = User.query.filter_by(id=current_user_id).first()
+            current_user = ur.get_user_by_id(current_user_id)
 
             if not current_user:
                 raise Exception("User not found")
