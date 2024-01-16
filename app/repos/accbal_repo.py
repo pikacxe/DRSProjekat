@@ -6,7 +6,7 @@ class AccountBalanceRepo:
     def __init__(self):
         pass
 
-    def get_all_by_card(self, card_number: str) -> list:
+    def get_all_by_card(card_number: str) -> list:
         data = ab.query.filter_by(card_number=card_number).all()
         return [x.to_json() for x in data]
 
@@ -27,10 +27,21 @@ class AccountBalanceRepo:
         db.session.commit()
         return True
     
-    def create_default(self, card_number: str) -> bool:
+    def add_account_balance(card_number: str, currency:str="RSD") -> bool:
         if not card_number:
             return False
-        acc_bal = ab(card_number=card_number, currency="RSD", balance=0)
+        acc_bal = ab(card_number, currency)
         db.session.add(acc_bal)
+        db.session.commit()
+        return True
+    
+    def update_account_balance(card_number: str, currency: str, amount: float) -> bool:
+        if not card_number or not currency or not amount:
+            return False
+        acc_bal = ab.query.filter_by(card_number=card_number, currency=currency).first()
+        if not acc_bal or acc_bal.balance + amount < 0:
+            return False
+        acc_bal.balance += amount
+        db.session.merge(acc_bal)
         db.session.commit()
         return True

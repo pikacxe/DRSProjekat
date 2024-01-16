@@ -21,7 +21,7 @@ def add_card(curr_user):
     data = request.get_json()
     if not data:
         return jsonify({"message": "Invalid data"}), 400
-    if not cr.add_card(data, curr_user.id):
+    if not cr.add_card(curr_user.id, data["card_number"]):
         return jsonify({"message": "Card was not created"}), 400
     return jsonify({"message": "Card added successfully"}), 200
 
@@ -40,7 +40,7 @@ def get_card(curr_user, card_number):
 @token_required
 def deposit(curr_user, card_number):
     # deposit money into account
-    if cr.card_belongs_to_user(card_number, curr_user.id):
+    if not cr.card_belongs_to_user(card_number, curr_user.id):
         return jsonify({"message": "Card does not belong to user"}), 401
     data = request.get_json()
     if not data or not data["currency"] or not data["amount"]:

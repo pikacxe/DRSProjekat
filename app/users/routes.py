@@ -11,8 +11,10 @@ from app.helpers import token_required
 def login():
     email = request.form.get("email")
     password = request.form.get("password")
+    print(email, password)
     # get user_id
     user = ur.get_user_by_logon(email, password)
+    print(user)
     if not user:
         return jsonify({"message": "User not found"}), 404
     # generate token

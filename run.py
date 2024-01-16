@@ -1,7 +1,7 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from app import create_app
 from os import environ as env
-from transaction_processor import start_transaction_process, emit_transactions
+from app.transaction_processor import start_transaction_process, emit_transactions
 
 
 if __name__ == "__main__":
@@ -10,6 +10,7 @@ if __name__ == "__main__":
     host = env.get("FLASK_RUN_HOST", "localhost")
     app_env = env.get("FLASK_ENV", "development")
     debug = app_env == "development"
+    t_period = int(env.get("TRANSACTION_PERIOD", 10))
 
     scheduler = BackgroundScheduler()
     try:
@@ -21,7 +22,7 @@ if __name__ == "__main__":
             start_transaction_process()
 
         # Start emitting transactions to socket
-        scheduler.add_job(emit_transactions, "interval", seconds=5, args=[app])
+        scheduler.add_job(emit_transactions, "interval", seconds=t_period, args=[app])
         scheduler.start()
 
         # Run app

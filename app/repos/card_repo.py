@@ -21,10 +21,10 @@ class CardRepo:
         account_balances = abr.get_all_by_card(card_number)
         return {
             "card": card.to_json(),
-            "account_balances": [x.to_json() for x in account_balances],
+            "account_balances": account_balances,
         }
 
-    def get_cards_with_balances(user_id: str) -> list:
+    def get_all_cards_for_user(user_id: str) -> list:
         cards = Card.query.filter_by(user_id=user_id).all()
         data = []
         for c in cards:
@@ -32,8 +32,8 @@ class CardRepo:
             account_balances = abr.get_all_by_card(c.card_number)
             # create a dictionary for each card and its account balances
             el = {
-                "card": c.to_json(),
-                "account_balances": [x.to_json() for x in account_balances],
+                "card": c.card_number,
+                "account_balances": account_balances,
             }
             data.append(el)
 
@@ -56,7 +56,7 @@ class CardRepo:
         # create default account balance for card
         db.session.add(card)
         db.session.commit()
-        abr.create_default(card_number)
+        abr.add_account_balance(card_number)
         return True
 
     def deposit(card_number: str, currency: str, amount: float) -> bool:

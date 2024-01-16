@@ -15,7 +15,7 @@ def get_all_unverified_users(curr_user):
     if not curr_user.is_admin:
         return jsonify({"message": "You are not an admin"}), 401
     data = ur.get_all_unverified_users()
-    return jsonify([x.to_json() for x in data]), 200
+    return jsonify(data), 200
 
 
 # register a new user
@@ -47,13 +47,15 @@ def verify_user(curr_user):
     data = request.get_json()
     if not data:
         return jsonify({'message': 'Invalid data'}), 400
-    if not ur.verify_user(data['id']):
+    if not ur.verify_user(data['user_id']):
         return jsonify({'message': 'User was not verified'}), 400
     # send mail to user with successful verification
+    '''
     msg = Message(
         "Account was verified successfully",
         recipients=[data['email']])
     msg.body = f"Hello, your account was verified successfully. You can now login to your account.\n"
     mail.send(msg)
+    '''
     
     return jsonify({'message': 'User verified successfully'}), 200 
