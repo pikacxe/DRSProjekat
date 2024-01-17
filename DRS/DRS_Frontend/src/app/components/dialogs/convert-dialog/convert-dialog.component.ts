@@ -9,9 +9,10 @@ import { CurrencyRatesService } from '../../../services/currency-rates.service';
   styleUrl: './convert-dialog.component.scss',
 })
 export class ConvertDialogComponent implements OnInit {
-  selectedValue = 'RSD';
+  selectedValue = '';
   currencies: Currency[] = [];
   balanceInRsd: number;
+  balanceToShow: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -24,7 +25,21 @@ export class ConvertDialogComponent implements OnInit {
         this.currencies = res;
       },
     });
-    this.balanceInRsd = this.data.balance;
+    this.selectedValue = this.data.balance.currency;
+    this.balanceToShow = this.data.balance.balance;
+    var selectedCurrency = this.currencies.find(
+      (currency) => currency.currency == this.selectedValue
+    );
+    console.log(selectedCurrency);
+    var selectedCurrencyExchange;
+    if (selectedCurrency) {
+      selectedCurrencyExchange = selectedCurrency.exchange;
+      console.log(selectedCurrencyExchange);
+    }
+    if (selectedCurrencyExchange) {
+      this.balanceInRsd = this.data.balance.balance * selectedCurrencyExchange;
+      console.log(this.balanceInRsd);
+    }
   }
 
   calculateBalance() {
@@ -32,9 +47,9 @@ export class ConvertDialogComponent implements OnInit {
       (currency) => currency.currency === this.selectedValue
     );
     if (selectedCurrency) {
-      this.data.balance = this.balanceInRsd;
-      this.data.balance = (
-        this.data.balance / selectedCurrency.exchange
+      this.balanceToShow = this.balanceInRsd;
+      this.balanceToShow = (
+        this.balanceToShow / selectedCurrency.exchange
       ).toFixed(2);
     }
   }

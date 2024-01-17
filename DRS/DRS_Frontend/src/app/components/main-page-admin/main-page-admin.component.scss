@@ -1,0 +1,35 @@
+@import "../../../assets/scss/variables.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(228, 226, 226);
+  height: calc(100% - $header-height);
+
+  .page {
+    width: 100%;
+    padding-top: 20px;
+    // max-width: 1200;
+
+    td {
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 23px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      color: $main-color;
+      margin-left: 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

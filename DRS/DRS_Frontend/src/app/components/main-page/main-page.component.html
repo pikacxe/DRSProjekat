@@ -12,7 +12,7 @@
             <div class="card" *ngFor="let card of cards">
                 <div class="row">
                     <span class="bold">Card number:</span>
-                    <span>{{card.card.card_number}}</span>
+                    <span>{{card.card}}</span>
                 </div>
                 <div class="row">
                     <span class="bold">Available balances on your card:</span>
@@ -40,7 +40,7 @@
                 <div class="buttons">
                     <button mat-raised-button color="primary" (click)="openNewTransactionDialog(card.card.card_number, card.account_balances)">
                         <mat-icon>send</mat-icon> New transaction </button>
-                    <button mat-raised-button color="primary" (click)="openConvertDialog(card.account_balances[0].balance)">
+                        <button mat-raised-button color="primary" (click)="openConvertDialog(card.account_balances)">
                         <mat-icon>send</mat-icon> Convert </button>
                     <button mat-raised-button color="primary" (click)="openAddFundsDialog(card.card.card_number)"> <mat-icon>add</mat-icon>
                         Add funds </button>
