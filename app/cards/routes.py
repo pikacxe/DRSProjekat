@@ -7,10 +7,12 @@ from app.repos.card_repo import CardRepo as cr
 @bp.route("/", methods=["GET"])
 @token_required
 def get_all_cards(curr_user):
+    if not curr_user.is_verified:
+        return jsonify([]), 404
     # get all card for user
     data = cr.get_all_cards_for_user(curr_user.id)
     if not data or data == []:
-        return jsonify({"message": "No cards found"}), 404
+        return jsonify([]), 404
     return jsonify(data), 200
 
 

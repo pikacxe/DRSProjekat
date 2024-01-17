@@ -42,7 +42,7 @@ class TransactionRepo:
             t.is_completed = True
             db.session.merge(t)
             db.session.commit()
-            # TODO send info mail to recepient and sender
+            # send info mail to recepient and sender
             MailService.send_mail_transaction(t)
                 
 
@@ -59,7 +59,7 @@ class TransactionRepo:
             return False
         # check if account balance with currency exists
         account_balance = abr.get_by_card_and_currency(
-            t.recipient_card_number, t.currency
+            t.sender_card_number, t.currency
         )
         if not account_balance:
             return False

@@ -26,7 +26,7 @@ class UserRepo:
             data.append({"user": u.to_json(), "cards": cards})
         return data
 
-    def add_user(json: str) -> User|None:
+    def add_user(json: str):
         if not User.verify_json(json):
             return None
         user = User(json)
@@ -34,10 +34,10 @@ class UserRepo:
         db.session.commit()
         return user
 
-    def get_user_by_id(id: str) -> User | None:
+    def get_user_by_id(id: str):
         return User.query.filter_by(id=id).first()
 
-    def get_user_by_logon(email: str, password: str) -> User | None:
+    def get_user_by_logon(email: str, password: str):
         return User.query.filter_by(email=email, password=password).first()
 
     def verify_user(id: str) -> bool:

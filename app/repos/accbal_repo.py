@@ -10,7 +10,7 @@ class AccountBalanceRepo:
         data = ab.query.filter_by(card_number=card_number).all()
         return [x.to_json() for x in data]
 
-    def get_by_card_and_currency(card_number: str, currency: str) -> ab | None:
+    def get_by_card_and_currency(card_number: str, currency: str):
         return ab.query.filter_by(card_number=card_number, currency=currency).first()
 
     def deposit_to_ballance(card_number: str, currency: str, amount: float) -> bool:
