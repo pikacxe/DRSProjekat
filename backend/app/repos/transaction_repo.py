@@ -58,7 +58,7 @@ class TransactionRepo:
         if not cr.card_belongs_to_user(t.recipient_card_number, recipient_id):
             return False
         # check if sender and recipient are different
-        if t.sender_id == t.recipient_id:
+        if t.sender_id == recipient_id:
             return False
         # check if recipient name matches recipient email
         if not ur.check_name_and_email(t.recipient_first_name,t.recipient_last_name, t.recipient_email):
