@@ -79,3 +79,9 @@ class UserRepo:
         db.session.merge(user)
         db.session.commit()
         return True
+    
+    def check_name_and_email(first_name: str, last_name: str, email: str) -> bool:
+        user = User.query.filter_by(first_name=first_name, last_name=last_name, email=email).first()
+        if not user:
+            return False
+        return True
