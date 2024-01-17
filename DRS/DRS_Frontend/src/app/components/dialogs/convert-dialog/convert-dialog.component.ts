@@ -30,15 +30,12 @@ export class ConvertDialogComponent implements OnInit {
     var selectedCurrency = this.currencies.find(
       (currency) => currency.currency == this.selectedValue
     );
-    console.log(selectedCurrency);
     var selectedCurrencyExchange;
     if (selectedCurrency) {
       selectedCurrencyExchange = selectedCurrency.exchange;
-      console.log(selectedCurrencyExchange);
     }
     if (selectedCurrencyExchange) {
       this.balanceInRsd = this.data.balance.balance * selectedCurrencyExchange;
-      console.log(this.balanceInRsd);
     }
   }
 

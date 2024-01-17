@@ -67,12 +67,11 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  openConvertDialog(balances: any[]) {
-    const nonZeroBalance = balances.find((balance) => balance.balance > 0);
+  openConvertDialog(balanceToSend: any) {
     this.dialog.open(ConvertDialogComponent, {
       panelClass: 'custom-mat-dialog',
       data: {
-        balance: nonZeroBalance,
+        balance: balanceToSend,
       },
     });
   }
@@ -116,7 +115,6 @@ export class MainPageComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.cards = res;
-          console.log(res);
           if (this.cards.length > 1) {
             this.isLonger = true;
           }

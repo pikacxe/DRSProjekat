@@ -43,7 +43,6 @@ export class ManageUsersComponent implements OnInit {
     this.adminService.getAllUnverified(this.authService.getToken() + '').subscribe({
       next: (res) =>{
         this.users = res;
-        console.log(res);
       }
     })
   }

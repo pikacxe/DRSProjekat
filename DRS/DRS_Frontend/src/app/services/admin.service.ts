@@ -30,7 +30,6 @@ export class AdminService {
         'Authorization': `Bearer ${token}`
       })
     }
-    console.log(data);
     return this.http.post<any>(URL + 'register', data, httpOptions);
   }
 
