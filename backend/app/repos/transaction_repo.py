@@ -57,6 +57,12 @@ class TransactionRepo:
         recipient_id = ur.get_id_by_email(t.recipient_email)
         if not cr.card_belongs_to_user(t.recipient_card_number, recipient_id):
             return False
+        # check if sender and recipient are different
+        if t.sender_id == t.recipient_id:
+            return False
+        # check if recipient name matches recipient email
+        if not ur.check_name_and_email(t.recipient_first_name,t.recipient_last_name, t.recipient_email):
+            return False
         # check if account balance with currency exists
         account_balance = abr.get_by_card_and_currency(
             t.sender_card_number, t.currency
