@@ -46,7 +46,7 @@ export class MainPageComponent implements OnInit {
         data.push({ currency: 'RSD', exchange: 1 });
         data.sort((a: any, b: any) => a.currency.localeCompare(b.currency));
         this.ratesService.setCurrencyRates(data);
-      }
+      },
     });
 
     this.ratesService.currency_rates$.subscribe({
@@ -62,18 +62,17 @@ export class MainPageComponent implements OnInit {
       panelClass: 'custom-mat-dialog',
       data: {
         SenderCardNumber: cardNumber,
-        SenderCurrencies: balances
+        SenderCurrencies: balances,
       },
     });
   }
 
-  openConvertDialog(balanceInRsd: number) {
-    console.log(balanceInRsd);
+  openConvertDialog(balanceToSend: any) {
     this.dialog.open(ConvertDialogComponent, {
       panelClass: 'custom-mat-dialog',
       data: {
-        balance: balanceInRsd
-      }
+        balance: balanceToSend,
+      },
     });
   }
 
@@ -81,8 +80,8 @@ export class MainPageComponent implements OnInit {
     const dialogRef = this.dialog.open(AddFundsDialogComponent, {
       panelClass: 'custom-mat-dialog',
       data: {
-        DepositCardNumber: cardNumber
-      }
+        DepositCardNumber: cardNumber,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

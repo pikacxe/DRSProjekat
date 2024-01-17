@@ -22,4 +22,24 @@ export class AdminService {
     }
     return this.http.get<any>(URL + 'users', httpOptions);
   }
+
+  createUser(data:any, token: string){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    }
+    return this.http.post<any>(URL + 'register', data, httpOptions);
+  }
+
+  verifyUser(data:any, token: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    }
+    return this.http.post<any>(URL + 'verify', data, httpOptions);
+  }
 }

@@ -85,7 +85,7 @@ export class EditProfileComponent implements OnInit {
         this.toaster.success('Profile updated successfully.');
       },
       error: (err) => {
-        console.log(err.error);
+        this.toaster.error(err.error.message);
       }
     })
   }

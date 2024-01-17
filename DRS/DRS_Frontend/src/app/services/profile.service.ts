@@ -41,8 +41,6 @@ export class ProfileService {
         'Authorization': `Bearer ${token}`
       })
     }
-
-    console.log(data);
     return this.htpp.post<any>(URL + '/change-password', data, httpOptions);
   }
 }

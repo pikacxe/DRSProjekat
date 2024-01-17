@@ -1,59 +1,71 @@
 <app-header></app-header>
-<table mat-table [dataSource]="transactionsDataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let transaction">{{ transaction.id != null ? transaction.id : 'N/A' }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef>Amount</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.amount != null ? transaction.amount : 'N/A' }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="currency">
-        <th mat-header-cell *matHeaderCellDef>Currency</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.currency != null ? transaction.currency : 'N/A' }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="created">
-        <th mat-header-cell *matHeaderCellDef>Created On</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.created != null ? transaction.created : 'N/A' }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="completed">
-        <th mat-header-cell *matHeaderCellDef>Completed On</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.completed != null ? transaction.completed : 'N/A' }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="recipientName">
-        <th mat-header-cell *matHeaderCellDef>Recipient Name</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.recipient_name != null ? transaction.recipient_name : 'N/A' }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="recipientCardNumber">
-        <th mat-header-cell *matHeaderCellDef>Recipient Card Number</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.recipient_card_number != null ? transaction.recipient_card_number : 'N/A' }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="recipientEmail">
-        <th mat-header-cell *matHeaderCellDef>Recipient Email</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.recipient_email != null ? transaction.recipient_email : 'N/A' }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="senderCardNumber">
-        <th mat-header-cell *matHeaderCellDef>Sender Card Number</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.sender_card_number != null ? transaction.sender_card_number : 'N/A' }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="state">
-        <th mat-header-cell *matHeaderCellDef>State</th>
-        <td mat-cell *matCellDef="let transaction">{{ transaction.state != null ? transaction.state : 'N/A' }}</td>
+<div class="wrapper">
+  <div class="page">
+    <p>To register or verify users click<a routerLink="/manage_users">here</a>.</p>
+    <div class="title-row">
+      <h1>Transactions History</h1>
+    </div>
+    <table mat-table [dataSource]="transactionsDataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.id != null ? transaction.id : 'N/A' }}</td>
       </ng-container>
   
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-<p>To register or verify users click <a routerLink="/manage_users">here</a>.</p>
+      <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.amount != null ? transaction.amount : 'N/A' }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef>Currency</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.currency != null ? transaction.currency : 'N/A' }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="created">
+          <th mat-header-cell *matHeaderCellDef>Created On</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.created != null ? transaction.created : 'N/A' }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="completed">
+          <th mat-header-cell *matHeaderCellDef>Completed On</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.completed != null ? transaction.completed : 'N/A' }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="recipientName">
+          <th mat-header-cell *matHeaderCellDef>Recipient Name</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.recipient_name != null ? transaction.recipient_name : 'N/A' }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="recipientCardNumber">
+          <th mat-header-cell *matHeaderCellDef>Recipient Card Number</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.recipient_card_number != null ? transaction.recipient_card_number : 'N/A' }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="recipientEmail">
+          <th mat-header-cell *matHeaderCellDef>Recipient Email</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.recipient_email != null ? transaction.recipient_email : 'N/A' }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="senderCardNumber">
+          <th mat-header-cell *matHeaderCellDef>Sender Card Number</th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.sender_card_number != null ? transaction.sender_card_number : 'N/A' }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>State</th>
+          <td mat-cell *matCellDef="let transaction">
+            <div class="completed"
+            [ngClass]="{'failed': transaction.state == 'Failed', 'processing': transaction.state == 'Processing'}">
+            <span class="clamp">{{ transaction.state != null ? transaction.state : 'N/A' }}</span>
+          </div>
+          </td>
+          
+        </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
+</div>
 
 <app-spinner></app-spinner>

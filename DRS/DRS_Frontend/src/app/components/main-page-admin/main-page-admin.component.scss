@@ -1,0 +1,51 @@
+@import "../../../assets/scss/variables.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(228, 226, 226);
+  height: calc(100% - $header-height);
+
+  .page {
+    width: 100%;
+    padding-top: 20px;
+    max-width: 1300px;
+    margin-bottom: 20px;
+
+    td {
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 30px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      color: $main-color;
+      margin-left: 5px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .completed {
+      width: fit-content;
+      color: $white;
+      background-color: $main-color;
+      font-weight: 500;
+      padding: 4px 15px;
+      border-radius: 100px;
+    }
+    .failed {
+      background-color: red;
+    }
+    .processing {
+      background-color: rgb(215, 215, 22);
+    }
+  }
+}

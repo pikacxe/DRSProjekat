@@ -20,6 +20,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { ChangePasswordDialogComponent } from './components/dialogs/change-password-dialog/change-password-dialog.component';
 import { ConvertDialogComponent } from './components/dialogs/convert-dialog/convert-dialog.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { UserCreateDialogComponent } from './user-create-dialog/user-create-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ManageUsersComponent } from './components/manage-users/manage-users.com
     EditProfileComponent,
     ChangePasswordDialogComponent,
     ConvertDialogComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    UserCreateDialogComponent,
   ],
   imports: [
     BrowserModule,

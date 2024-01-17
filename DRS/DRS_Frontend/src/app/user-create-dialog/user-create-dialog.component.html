@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Create User</h1>
+<div class="page">
+    <div mat-dialog-content>
+        <form [formGroup]="profileForm" class="profileForm"> 
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput formControlName="first_name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Last name</mat-label>
+                <input type="text" matInput formControlName="last_name">
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="pat@example.com">
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="text" matInput formControlName="password">
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Country</mat-label>
+                <input type="text" matInput formControlName="country">
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <input type="text" matInput formControlName="city">
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input type="text" matInput formControlName="address">
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input type="text" matInput formControlName="phone_number">
+            </mat-form-field>
+        </form>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" (click)="createUser()" [disabled]="profileForm.invalid">Create</button>
+  </div>

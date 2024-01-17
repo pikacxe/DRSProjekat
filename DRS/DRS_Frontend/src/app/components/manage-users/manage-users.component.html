@@ -1,12 +1,45 @@
 <app-header></app-header>
+<div class="wrapper">
+    <div class="page">
+        <div class="tittle-row">
+            <h1>Unverified users</h1>
+            <button class="create-user-button" mat-raised-button color="accent" (click) = "openDialog()">
+                <mat-icon>person</mat-icon> Create new user </button>
+        </div>
+        <hr>
+        <div class="cards">
+            <div class="card" *ngFor="let user of users">
+                <div class="row">
+                    <span class="bold">ID :</span>
+                    <span>{{user.user.id}}</span>
+                </div>
+                <div class="row">
+                    <span class="bold">Name :</span>
+                    <span>{{user.user.first_name}} {{user.user.last_name}}</span>
+                </div>
+                <div class="row">
+                    <span class="bold">Email :</span>
+                    <span>{{user.user.email}}</span>
+                </div>
 
-<div class="user" *ngFor="let user of users">
-    <p>User's ID:  {{user.id}}</p>
-    <p>User's email:  {{user.email}}</p>
-    <p>User's name:  {{user.first_name}} {{user.last_name}}</p>
+                <div class="table" *ngIf="user.cards.length > 0">
+                    <table mat-table [dataSource]="user.cards" class="mat-elevation-z8">
+                        <ng-container matColumnDef="card_number">
+                            <th mat-header-cell *matHeaderCellDef> Users's cards</th>
+                            <td mat-cell *matCellDef="let card"> {{ card }} </td>
+                        </ng-container>
 
-    <p>*********************</p>
+                        <tr mat-header-row *matHeaderRowDef="['card_number']"></tr>
+                        <tr mat-row *matRowDef="let row; columns: ['card_number'];"></tr>
+                    </table>
+                </div>
 
+                <div class="button">
+                    <button mat-raised-button color="primary" (click) = "verifyUser(user.user.id)">
+                        <mat-icon>verified_user</mat-icon> Verify user </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 <app-spinner></app-spinner>
