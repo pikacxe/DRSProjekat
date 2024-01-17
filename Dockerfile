@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 
 # Run app.py when the container launches
-ENTRYPOINT ["/project/start.sh"]
+CMD ["python", "run.py"]

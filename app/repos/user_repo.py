@@ -44,6 +44,9 @@ class UserRepo:
         user = User.query.filter_by(id=id).first()
         if not user:
             return False
+        cards = cr.get_card_numbers_for_user(id)
+        if not cards or cards == []:
+            return False
         user.is_verified = True
         db.session.merge(user)
         db.session.commit()

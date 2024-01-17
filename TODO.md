@@ -3,7 +3,6 @@
 
 
  - [X] api/admin/register
- - [ ] add password hashing
  - [X] api/admin/transactions
     - [X] implement flask-socketio for real-time transaction view
  - [X] complete pending transactions with process
