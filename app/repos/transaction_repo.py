@@ -4,6 +4,7 @@ from app.repos.accbal_repo import AccountBalanceRepo as abr
 from app.repos.card_repo import CardRepo as cr
 from app.repos.user_repo import UserRepo as ur
 from datetime import datetime
+from app.services.mail_service import MailService
 
 
 class TransactionRepo:
@@ -42,6 +43,8 @@ class TransactionRepo:
             db.session.merge(t)
             db.session.commit()
             # TODO send info mail to recepient and sender
+            MailService.send_mail_transaction(t)
+                
 
     def add_transaction(json: str, user_id: str) -> bool:
         if not user_id or not Transaction.verify_json(json):

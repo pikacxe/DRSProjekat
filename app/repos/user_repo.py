@@ -26,13 +26,13 @@ class UserRepo:
             data.append({"user": u.to_json(), "cards": cards})
         return data
 
-    def add_user(json: str) -> bool:
+    def add_user(json: str) -> User|None:
         if not User.verify_json(json):
-            return False
+            return None
         user = User(json)
         db.session.add(user)
         db.session.commit()
-        return True
+        return user
 
     def get_user_by_id(id: str) -> User | None:
         return User.query.filter_by(id=id).first()

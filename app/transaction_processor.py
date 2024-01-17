@@ -2,8 +2,7 @@ from os import environ as env
 import atexit
 from multiprocessing import Event, Process
 import time
-from app.extensions import mail, socketio
-from datetime import datetime
+from app.extensions import socketio
 from app.repos.transaction_repo import TransactionRepo as tr
 
 # emit transactions periodically
