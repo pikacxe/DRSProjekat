@@ -106,7 +106,7 @@ class MailService:
             </tr>
             <tr>
               <td>Recipient mail</td>
-              <td>{ t.recipient_mail }</td>
+              <td>{ t.recipient_email }</td>
             </tr>
 
         </table>

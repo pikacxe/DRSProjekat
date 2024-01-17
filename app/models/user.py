@@ -33,6 +33,7 @@ class User(db.Model):
         self.country = json["country"]
         self.phone_number = json["phone_number"]
         self.email = json["email"]
+        self.password = json["password"]
 
     # verify json
     @staticmethod
