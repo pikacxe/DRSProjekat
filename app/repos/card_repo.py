@@ -11,7 +11,7 @@ class CardRepo:
         data = Card.query.all()
         return [x.to_json() for x in data]
 
-    def get_card(card_number: str) -> Card | None:
+    def get_card(card_number: str):
         return Card.query.filter_by(card_number=card_number).first()
 
     def get_card_with_balances(card_number: str) -> list:
@@ -44,8 +44,8 @@ class CardRepo:
         return [x.card_number for x in cards]
 
     def card_belongs_to_user(card_number: str, user_id: str) -> bool:
-        card = Card.query.filter_by(card_number=card_number).first()
-        if not card or card.user_id != user_id:
+        card = Card.query.filter_by(card_number=card_number, user_id=user_id).first()
+        if not card:
             return False
         return True
 
