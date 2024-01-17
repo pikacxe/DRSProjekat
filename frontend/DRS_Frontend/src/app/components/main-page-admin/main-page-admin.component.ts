@@ -10,7 +10,7 @@ import { finalize } from 'rxjs';
   styleUrl: './main-page-admin.component.scss'
 })
 export class MainPageAdminComponent implements OnInit{
-
+  isLonger = false;
   transactions: any[] = [];
   transactionsDataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', 'amount', 'currency', 'created', 'completed', 'recipientName', 'recipientCardNumber', 'recipientEmail', 'senderCardNumber', 'state'];
@@ -24,6 +24,10 @@ export class MainPageAdminComponent implements OnInit{
     this.socketService.listen('transaction_processing')
     .subscribe({
       next: (res) => {
+        console.log(res);
+        if(res.length > 9) {
+          this.isLonger = true;
+        }
         let data = res.map((response: any) => ({
           ...response,
           recipient_name: response.recipient_first_name + ' ' + response.recipient_last_name,

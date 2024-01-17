@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="wrapper">
+<div [ngClass]="{'bigWrapper': isLonger}" class="wrapper">
   <div class="page">
     <p>To register or verify users click<a routerLink="/manage_users">here</a>.</p>
     <div class="title-row">
@@ -55,7 +55,7 @@
           <th mat-header-cell *matHeaderCellDef>State</th>
           <td mat-cell *matCellDef="let transaction">
             <div class="completed"
-            [ngClass]="{'failed': transaction.state == 'Failed', 'processing': transaction.state == 'Processing'}">
+            [ngClass]="{'failed': transaction.state == 'Failed', 'processing': transaction.state == 'Processing' || transaction.state == 'Pending',}">
             <span class="clamp">{{ transaction.state != null ? transaction.state : 'N/A' }}</span>
           </div>
           </td>
