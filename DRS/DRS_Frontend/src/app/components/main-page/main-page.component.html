@@ -1,11 +1,9 @@
 <app-header></app-header>
 <div [ngClass]="{'bigWrapper': isLonger}" class="wrapper">
     <div class="page">
-        <div class="title-row">
             <h1>Your Cards</h1>
             <button mat-raised-button color="accent" (click)="openNewCardDialog()"><mat-icon>add</mat-icon> Add new card
             </button>
-        </div>
         <hr>
         <p *ngIf="!isVerified" class="warning">Please add a card to verify your account and log in back again.</p>
         <div class="cards" *ngIf="isVerified">
@@ -37,7 +35,7 @@
                                 <mat-icon>repeat</mat-icon>
                               </button>
                             </td>
-                          </ng-container>
+                        </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="['currency', 'balance', 'convert']"></tr>
                         <tr mat-row *matRowDef="let row; columns: ['currency', 'balance', 'convert' ];"></tr>

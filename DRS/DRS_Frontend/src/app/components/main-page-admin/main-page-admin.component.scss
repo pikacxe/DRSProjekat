@@ -10,14 +10,15 @@
   .page {
     width: 100%;
     padding-top: 20px;
-    // max-width: 1200;
+    max-width: 1300px;
+    margin-bottom: 20px;
 
     td {
       font-weight: 500;
     }
 
     p {
-      font-size: 23px;
+      font-size: 30px;
       font-weight: bold;
       display: flex;
       justify-content: center;
@@ -30,6 +31,21 @@
       &:hover {
         cursor: pointer;
       }
+    }
+
+    .completed {
+      width: fit-content;
+      color: $white;
+      background-color: $main-color;
+      font-weight: 500;
+      padding: 4px 15px;
+      border-radius: 100px;
+    }
+    .failed {
+      background-color: red;
+    }
+    .processing {
+      background-color: rgb(215, 215, 22);
     }
   }
 }
