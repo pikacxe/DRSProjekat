@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AdminService } from '../services/admin.service';
-import { LoadingService } from '../services/loading.service';
+import { AdminService } from '../../../services/admin.service';
 import { HotToastService } from '@ngneat/hot-toast';
-import { AuthService } from '../services/auth.service';
-import { finalize } from 'rxjs';
+import { LoadingService } from '../../../services/loading.service';
+import { AuthService } from '../../../services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-user-create-dialog',
-  templateUrl: './user-create-dialog.component.html',
-  styleUrl: './user-create-dialog.component.scss'
+  selector: 'app-create-user-dialog',
+  templateUrl: './create-user-dialog.component.html',
+  styleUrl: './create-user-dialog.component.scss'
 })
-export class UserCreateDialogComponent implements OnInit
- {
+export class CreateUserDialogComponent {
   profileForm: FormGroup;
 
 
@@ -23,7 +22,7 @@ export class UserCreateDialogComponent implements OnInit
     private loadingService : LoadingService,
     private toaster : HotToastService,
     private authService : AuthService,
-    private dialogRef: MatDialogRef<UserCreateDialogComponent>,
+    private dialogRef: MatDialogRef<CreateUserDialogComponent>,
 
   ){}
   ngOnInit(): void {

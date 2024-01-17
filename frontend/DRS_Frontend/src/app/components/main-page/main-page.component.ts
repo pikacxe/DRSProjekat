@@ -118,10 +118,12 @@ export class MainPageComponent implements OnInit {
           if (this.cards.length > 1) {
             this.isLonger = true;
           }
-          this.cards.length == 0
-            ? (this.isVerified = false)
-            : (this.isVerified = true);
         },
+        error: (err) => {
+          err.error.length == 0
+          ? (this.isVerified = false)
+          : (this.isVerified = true);
+        }
       });
   }
 }

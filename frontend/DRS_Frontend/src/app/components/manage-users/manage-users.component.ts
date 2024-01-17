@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { AuthService } from '../../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { UserCreateDialogComponent } from '../../user-create-dialog/user-create-dialog.component';
 import { LoadingService } from '../../services/loading.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { finalize } from 'rxjs';
+import { CreateUserDialogComponent } from '../dialogs/create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'app-manage-users',
@@ -25,7 +25,7 @@ export class ManageUsersComponent implements OnInit {
   ) {}
 
   openDialog(){
-    const dialogRef = this.dialog.open(UserCreateDialogComponent,{
+    const dialogRef = this.dialog.open(CreateUserDialogComponent,{
       panelClass: 'custom-mat-dialog',
     });
     dialogRef.afterClosed().subscribe((result) => {

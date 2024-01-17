@@ -39,7 +39,7 @@ export class AddFundsDialogComponent {
   ngOnInit(): void {
     this.addFundsForm = this.fb.group({
       currency: new FormControl('', [Validators.required]),
-      amount: new FormControl('', [Validators.required]),
+      amount: new FormControl('', [Validators.required, Validators.pattern(/^\d+\.?\d*$/)]),
     });
 
     this.ratesService.currency_rates$.subscribe({
@@ -51,7 +51,8 @@ export class AddFundsDialogComponent {
 
   addFunds() {
     this.loadingService.setLoadingState(true);
-
+    const amountControl = this.addFundsForm.get('amount');
+    this.addFundsForm.controls['amount'].setValue(parseFloat(amountControl?.value));
     this.cardService
       .addFunds(
         this.addFundsForm.value,

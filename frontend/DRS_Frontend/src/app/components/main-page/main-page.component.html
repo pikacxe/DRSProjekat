@@ -1,9 +1,11 @@
 <app-header></app-header>
 <div [ngClass]="{'bigWrapper': isLonger}" class="wrapper">
     <div class="page">
+        <div class="title-row">
             <h1>Your Cards</h1>
             <button mat-raised-button color="accent" (click)="openNewCardDialog()"><mat-icon>add</mat-icon> Add new card
             </button>
+        </div>
         <hr>
         <p *ngIf="!isVerified" class="warning">Please add a card to verify your account and log in back again.</p>
         <div class="cards" *ngIf="isVerified">
@@ -45,9 +47,9 @@
                 <hr class="card-hr">
 
                 <div class="buttons">
-                    <button mat-raised-button color="primary" (click)="openNewTransactionDialog(card.card.card_number, card.account_balances)">
+                    <button mat-raised-button color="primary" (click)="openNewTransactionDialog(card.card, card.account_balances)">
                         <mat-icon>send</mat-icon> New transaction </button>
-                    <button mat-raised-button color="primary" (click)="openAddFundsDialog(card.card.card_number)"> <mat-icon>add</mat-icon>
+                    <button mat-raised-button color="primary" (click)="openAddFundsDialog(card.card)"> <mat-icon>add</mat-icon>
                         Add funds </button>
                 </div>
             </div>
