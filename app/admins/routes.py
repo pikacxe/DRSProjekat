@@ -48,7 +48,7 @@ def verify_user(curr_user):
     if not ur.verify_user(data['user_id']):
         return jsonify({'message': 'User was not verified'}), 400
     # send mail to user with successful verification
-    if not MailService.send_mail_verification(data):
+    if not MailService.send_mail_verification(ur.get_user_by_id(data['user_id'])):
         return jsonify({'message': 'Mail was not sent'}), 500 
     
     return jsonify({'message': 'User verified successfully'}), 200 

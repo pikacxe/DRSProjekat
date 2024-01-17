@@ -3,7 +3,6 @@ from app.models.transaction import Transaction
 from app.repos.user_repo import UserRepo
 from app.extensions import mail
 from app.models.user import User
-import os 
 
 class MailService:
   def __init__(self) -> None:
@@ -17,7 +16,7 @@ class MailService:
     msg.recipients.append(t.recipient_email)
     msg.recipients.append(sender.email)
     msg.subject=f"Transaction {t.id} completed."
-    html_content="""
+    html_content=f"""
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,59 +25,59 @@ class MailService:
     <title>Transaction Completed</title>
     <style>
         /* Add your custom styles here */
-        body {
+        body {{
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
             padding: 20px;
-        }
+        }}
 
-        .container {
+        .container {{
             max-width: 600px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+        }}
 
-        h1 {
+        h1 {{
             color: #007BFF;
-        }
+        }}
 
-        p {
+        p {{
             margin-bottom: 20px;
-        }
+        }}
 
-        table {
+        table {{
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-        }
+        }}
 
-        th, td {
+        th, td {{
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
-        }
+        }}
 
-        th {
+        th {{
             background-color: #007BFF;
             color: white;
-        }
+        }}
 
-        .footer {
+        .footer {{
             text-align: center;
             margin-top: 20px;
             color: #777;
-        }
+        }}
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Transaction Completed</h1>
         <p>Hello dear customer,</p>
-        <p>We are pleased to inform you that your transaction with ID <strong>{ transaction_id }</strong> has been successfully completed.</p>
+        <p>We are pleased to inform you that your transaction with ID <strong>{ t.id }</strong> has been successfully completed.</p>
         <h2>Transaction</h2>
         <table>
             <tr>
@@ -87,27 +86,27 @@ class MailService:
             </tr>
             <tr>
                 <td>Transaction ID</td>
-                <td>{ transaction_id }</td>
+                <td>{ t.id }</td>
             </tr>
             <tr>
                 <td>Sender ID</td>
-                <td>{ sender_id }</td>
+                <td>{ t.sender_id }</td>
             </tr>
             <tr>
                 <td>Sender Card Number</td>
-                <td>{ sender_card_number }</td>
+                <td>{ t.sender_card_number }</td>
             </tr>
             <tr>
                 <td>Currency</td>
-                <td>{ currency }</td>
+                <td>{ t.currency }</td>
             </tr>
             <tr>
                 <td>Amount</td>
-                <td>{ amount }</td>
+                <td>{ t.amount }</td>
             </tr>
             <tr>
               <td>Recipient mail</td>
-              <td>{ recipient_mail }</td>
+              <td>{ t.recipient_mail }</td>
             </tr>
 
         </table>
@@ -119,7 +118,7 @@ class MailService:
     </div>
 </body>
 </html>
-    """.format(transaction_id=t.id, sender_id=t.sender_id, sender_card_number=t.sender_card_number, currency=t.currency, amount=t.amount, recipient_mail=t.recipient_email)
+    """
 
     # Set the HTML content directly
     msg.html = html_content
@@ -134,7 +133,7 @@ class MailService:
     msg=Message()
     msg.recipients.append(u.email)
     msg.subject=f"Your registration is complete."
-    html_content="""
+    html_content=f"""
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,52 +142,52 @@ class MailService:
     <title>Welcome to our bank</title>
     <style>
         /* Add your custom styles here */
-        body {
+        body {{
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
             padding: 20px;
-        }
+        }}
 
-        .container {
+        .container {{
             max-width: 600px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+        }}
 
-        h1 {
+        h1 {{
             color: #007BFF;
-        }
+        }}
 
-        p {
+        p {{
             margin-bottom: 20px;
-        }
+        }}
 
-        table {
+        table {{
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-        }
+        }}
 
-        th, td {
+        th, td {{
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
-        }
+        }}
 
-        th {
+        th {{
             background-color: #007BFF;
             color: white;
-        }
+        }}
 
-        .footer {
+        .footer {{
             text-align: center;
             margin-top: 20px;
             color: #777;
-        }
+        }}
     </style>
 </head>
 <body>
@@ -204,11 +203,11 @@ class MailService:
             </tr>
             <tr>
                 <td>Email</td>
-                <td>{ user_email }</td>
+                <td>{ u.email }</td>
             </tr>
             <tr>
                 <td>Password</td>
-                <td>{ user_password }</td>
+                <td>{ u.password }</td>
             </tr>
         </table>
 
@@ -222,7 +221,7 @@ class MailService:
     </div>
 </body>
 </html>
-    """.format(user_email=u.email, user_password=u.password)
+    """
     # Set the HTML content directly
     msg.html = html_content
 
@@ -236,7 +235,7 @@ class MailService:
     msg=Message()
     msg.recipients.append(u.email)
     msg.subject=f"Your account is verified."
-    html_content="""
+    html_content=f"""
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -245,35 +244,35 @@ class MailService:
     <title>Account Verification Successful</title>
     <style>
         /* Add your custom styles here */
-        body {
+        body {{
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
             padding: 20px;
-        }
+        }}
 
-        .container {
+        .container {{
             max-width: 600px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+        }}
 
-        h1 {
+        h1 {{
             color: #28a745; /* Green color */
-        }
+        }}
 
-        p {
+        p {{
             margin-bottom: 20px;
-        }
+        }}
 
-        .footer {
+        .footer {{
             text-align: center;
             margin-top: 20px;
             color: #777;
-        }
+        }}
     </style>
 </head>
 <body>
