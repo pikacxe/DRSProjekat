@@ -1,7 +1,4 @@
-const DOMAIN = "http://spasic.co.rs"
-const PORT = ":8080"
-const TAIL = "/api"
-
 export const environment = {
-  baseURL: DOMAIN + PORT + TAIL
+  production: true,
+  backendBaseUrl: process.env["BASE_BACKEND_URL"]
 };

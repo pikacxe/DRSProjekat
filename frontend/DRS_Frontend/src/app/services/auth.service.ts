@@ -38,7 +38,7 @@ export class AuthService {
     };
 
     
-    const url = environment.baseURL + '/login';
+    const url = environment.backendBaseUrl + '/login';
     console.log(url);
     return this.http.post<any>(url, body, httpOptions);
   }

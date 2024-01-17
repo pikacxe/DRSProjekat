@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
-const URL = environment.baseURL + '/admin/'
+const URL = environment.backendBaseUrl + '/admin/'
 
 @Injectable({
   providedIn: 'root'
